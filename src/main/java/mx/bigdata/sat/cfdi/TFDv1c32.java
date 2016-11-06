@@ -41,11 +41,13 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
 import mx.bigdata.sat.cfdi.schema.ObjectFactory;
 import mx.bigdata.sat.cfdi.schema.TimbreFiscalDigital;
 import mx.bigdata.sat.common.ComprobanteBase;
 import mx.bigdata.sat.common.NamespacePrefixMapperImpl;
 
+import mx.bigdata.sat.common.SatCharacterEscapeHandler;
 import org.apache.commons.codec.binary.Base64;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -137,6 +139,8 @@ public final class TFDv1c32 {
 
   public void guardar(OutputStream out) throws Exception {
     Marshaller m = CONTEXT.createMarshaller();
+    m.setProperty(CharacterEscapeHandler.class.getName(),  new SatCharacterEscapeHandler());
+    m.setProperty(Marshaller.JAXB_ENCODING, "ASCII");
     m.setProperty("com.sun.xml.bind.namespacePrefixMapper",
                   new NamespacePrefixMapperImpl(CFDv32.PREFIXES));
     m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);

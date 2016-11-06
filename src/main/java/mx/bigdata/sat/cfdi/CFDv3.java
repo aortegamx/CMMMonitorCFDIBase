@@ -45,10 +45,12 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import com.sun.xml.bind.marshaller.CharacterEscapeHandler;
 import mx.bigdata.sat.cfdi.schema.Comprobante;
 import mx.bigdata.sat.cfdi.schema.ObjectFactory;
 import mx.bigdata.sat.common.ComprobanteBase;
 import mx.bigdata.sat.common.NamespacePrefixMapperImpl;
+import mx.bigdata.sat.common.SatCharacterEscapeHandler;
 import mx.bigdata.sat.common.URIResolverImpl;
 
 import mx.bigdata.sat.security.KeyLoaderEnumeration;
@@ -171,6 +173,8 @@ public final class CFDv3 implements CFDI {
 
   public void guardar(OutputStream out) throws Exception {
     Marshaller m = context.createMarshaller();
+    m.setProperty(CharacterEscapeHandler.class.getName(),  new SatCharacterEscapeHandler());
+    m.setProperty(Marshaller.JAXB_ENCODING, "ASCII");
     m.setProperty("com.sun.xml.bind.namespacePrefixMapper",
                   new NamespacePrefixMapperImpl(localPrefixes));
     m.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);

@@ -348,7 +348,7 @@
               <extension>true</extension>
             </configuration>
           </execution>
-          <execution>
+          <!--execution>
             <id>schema20-xjc</id>
             <goals>
               <goal>xjc</goal>
@@ -360,7 +360,7 @@
               <staleFile>${project.build.directory}/generated-sources/xjc20/.staleFlag</staleFile>
               <extension>true</extension>
             </configuration>
-          </execution>
+          </execution-->
           <execution>
             <id>schema100-xjc</id>
             <goals>

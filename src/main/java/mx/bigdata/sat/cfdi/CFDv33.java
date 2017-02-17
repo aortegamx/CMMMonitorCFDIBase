@@ -63,8 +63,10 @@ public final class CFDv33 implements CFDI {
   private static final String XSLT = "/xslt/cadenaoriginal_3_3.xslt";
 
   private static final String[] XSD = new String[] {
+      "/xsd/v33/catCFDI.xsd",
+      "/xsd/v33/tdCFDI.xsd",
       "/xsd/v33/cfdv33.xsd",
-      "/xsd/v3/TimbreFiscalDigital.xsd",
+      "/xsd/v33/TimbreFiscalDigital.xsd",
       "/xsd/common/TuristaPasajeroExtranjero/TuristaPasajeroExtranjero.xsd",
       "/xsd/common/detallista/detallista.xsd",
       "/xsd/common/divisas/divisas.xsd",
@@ -95,6 +97,8 @@ public final class CFDv33 implements CFDI {
   public static final ImmutableMap<String, String> PREFIXES =
     ImmutableMap.of("http://www.w3.org/2001/XMLSchema-instance","xsi",
                     "http://www.sat.gob.mx/cfd/3", "cfdi",
+                    "http://www.sat.gob.mx/sitio_internet/cfd/catalogos", "catCFDI",
+                    "http://www.sat.gob.mx/sitio_internet/cfd/tipoDatos/tdCFDI", "tdCFDI",
                     "http://www.sat.gob.mx/TimbreFiscalDigital", "tfd");
 
   private final Map<String, String> localPrefixes = Maps.newHashMap(PREFIXES);
@@ -201,8 +205,10 @@ public final class CFDv33 implements CFDI {
     m.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
     m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
     m.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, 
-                  "http://www.sat.gob.mx/cfd/3  "
-                  + "http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd");
+                  "http://www.sat.gob.mx/cfd/3  " +
+                  "http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd " +
+                  "http://www.sat.gob.mx/sitio_internet/cfd/catalogos " +
+                  "http://www.sat.gob.mx/sitio_internet/cfd/tipoDatos/tdCFDI");
     byte[] xmlHeaderBytes = XML_HEADER.getBytes("UTF8");
     out.write(xmlHeaderBytes); 
     m.marshal(document, out);

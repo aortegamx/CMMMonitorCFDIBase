@@ -130,7 +130,7 @@ public final class CFDv32 implements CFDI {
   }
 
   public void sellar(PrivateKey key, X509Certificate cert) throws Exception {
-    cert.checkValidity(); 
+    cert.checkValidity();
     String signature = getSignature(key);
     document.setSello(signature);
     byte[] bytes = cert.getEncoded();
@@ -179,6 +179,10 @@ public final class CFDv32 implements CFDI {
     String sigStr = document.getSello();
     byte[] signature = b64.decode(sigStr); 
     byte[] bytes = getOriginalBytes();
+
+    //String cadenaOriginal = new String(bytes, "UTF8");
+    //System.out.println("Cadena Original: " + cadenaOriginal);
+
     Signature sig = Signature.getInstance("SHA1withRSA");
     sig.initVerify(cert);
     sig.update(bytes);

@@ -153,6 +153,19 @@
               <extension>true</extension>
             </configuration>
           </execution>
+    <execution>
+      <id>schema103-xjc</id>
+      <goals>
+        <goal>xjc</goal>
+      </goals>
+      <configuration>
+        <packageName>mx.bigdata.sat.cfdi.v33.schema</packageName>
+        <schemaDirectory>src/main/resources/xsd/v33</schemaDirectory>
+        <outputDirectory>${project.build.directory}/generated-sources/xjc103</outputDirectory>
+        <staleFile>${project.build.directory}/generated-sources/xjc103/.staleFlag</staleFile>
+        <extension>true</extension>
+      </configuration>
+    </execution>
           <execution>
             <id>schema5-xjc</id>
             <goals>

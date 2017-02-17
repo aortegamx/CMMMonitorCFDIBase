@@ -33,6 +33,10 @@ public abstract class CFDFactory {
     Document doc = builder.parse(new ByteArrayInputStream(data));
     XPathFactory xfactory = XPathFactory.newInstance();
     XPath xpath = xfactory.newXPath();
-    return (String) xpath.evaluate("/Comprobante/@version", doc);
+    String version = (String) xpath.evaluate("/Comprobante/@version", doc);
+    if(version.equals("")) {
+      version = (String) xpath.evaluate("/Comprobante/@Version", doc);
+    }
+    return version;
   }
 }

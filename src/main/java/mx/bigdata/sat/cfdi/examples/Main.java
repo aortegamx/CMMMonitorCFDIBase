@@ -21,7 +21,7 @@ import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 
 import mx.bigdata.sat.cfdi.schema.Comprobante;
-import mx.bigdata.sat.cfdi.CFDv3;
+import mx.bigdata.sat.cfdiv.CFDv3;
 import mx.bigdata.sat.security.KeyLoaderEnumeration;
 import mx.bigdata.sat.security.factory.KeyLoaderFactory;
 

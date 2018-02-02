@@ -35,7 +35,7 @@ public final class ExampleCFDv33Factory {
     comp.setVersion("3.3");
     comp.setMoneda(CMoneda.MXN);
     Date date = new GregorianCalendar(2017, 1, 6, 20, 38, 12).getTime();
-    comp.setFecha(date);
+    //comp.setFecha(date);
     comp.setFormaPago("01");
     comp.setSubTotal(new BigDecimal("466.43"));
     comp.setTotal(new BigDecimal("488.50"));
@@ -46,7 +46,7 @@ public final class ExampleCFDv33Factory {
     comp.setReceptor(createReceptor(of));
     comp.setConceptos(createConceptos(of));
     comp.setImpuestos(createImpuestos(of));
-    comp.setComplemento(createComplemento(of));
+    //comp.setComplemento(createComplemento(of));
     return comp;
   }
   
@@ -116,14 +116,14 @@ public final class ExampleCFDv33Factory {
     Traslado t1 = of.createComprobanteImpuestosTrasladosTraslado();
     t1.setImporte(new BigDecimal("36"));
     t1.setImpuesto("001");
-    t1.setTasaOCuota("0.160000");
+    //t1.setTasaOCuota("0.160000");
     t1.setTipoFactor(CTipoFactor.TASA);
     list.add(t1);
 
     Traslado t2 = of.createComprobanteImpuestosTrasladosTraslado();
     t2.setImporte(new BigDecimal("22.07"));
     t2.setImpuesto("002");
-    t2.setTasaOCuota("0.160000");
+    //t2.setTasaOCuota("0.160000");
     t2.setTipoFactor(CTipoFactor.TASA);
     list.add(t2);
 

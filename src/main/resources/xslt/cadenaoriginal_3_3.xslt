@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="2.0"
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:xs="http://www.w3.org/2001/XMLSchema"
-                xmlns:fn="http://www.w3.org/2005/xpath-functions"
-                xmlns:cfdi="http://www.sat.gob.mx/cfd/3"
-                xmlns:ecc="http://www.sat.gob.mx/ecc"
-                xmlns:psgecfd="http://www.sat.gob.mx/psgecfd"
-                xmlns:divisas="http://www.sat.gob.mx/divisas"
-                xmlns:detallista="http://www.sat.gob.mx/detallista"
-                xmlns:ecb="http://www.sat.gob.mx/ecb"
-                xmlns:implocal="http://www.sat.gob.mx/implocal"
-                xmlns:terceros="http://www.sat.gob.mx/terceros"
-                xmlns:iedu="http://www.sat.gob.mx/iedu"
-                xmlns:ventavehiculos="http://www.sat.gob.mx/ventavehiculos"
-                xmlns:pfic="http://www.sat.gob.mx/pfic"
-                xmlns:tpe="http://www.sat.gob.mx/TuristaPasajeroExtranjero"
-                xmlns:leyendasFisc="http://www.sat.gob.mx/leyendasFiscales">
+<xsl:stylesheet version="2.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:fn="http://www.w3.org/2005/xpath-functions" xmlns:cfdi="http://www.sat.gob.mx/cfd/3" xmlns:cce11="http://www.sat.gob.mx/ComercioExterior11" xmlns:donat="http://www.sat.gob.mx/donat" xmlns:divisas="http://www.sat.gob.mx/divisas" xmlns:implocal="http://www.sat.gob.mx/implocal" xmlns:leyendasFisc="http://www.sat.gob.mx/leyendasFiscales" xmlns:pfic="http://www.sat.gob.mx/pfic" xmlns:tpe="http://www.sat.gob.mx/TuristaPasajeroExtranjero" xmlns:nomina12="http://www.sat.gob.mx/nomina12" xmlns:registrofiscal="http://www.sat.gob.mx/registrofiscal" xmlns:pagoenespecie="http://www.sat.gob.mx/pagoenespecie" xmlns:aerolineas="http://www.sat.gob.mx/aerolineas" xmlns:valesdedespensa="http://www.sat.gob.mx/valesdedespensa" xmlns:consumodecombustibles="http://www.sat.gob.mx/consumodecombustibles" xmlns:notariospublicos="http://www.sat.gob.mx/notariospublicos" xmlns:vehiculousado="http://www.sat.gob.mx/vehiculousado" xmlns:servicioparcial="http://www.sat.gob.mx/servicioparcialconstruccion" xmlns:decreto="http://www.sat.gob.mx/renovacionysustitucionvehiculos" xmlns:destruccion="http://www.sat.gob.mx/certificadodestruccion" xmlns:obrasarte="http://www.sat.gob.mx/arteantiguedades" xmlns:ine="http://www.sat.gob.mx/ine" xmlns:iedu="http://www.sat.gob.mx/iedu" xmlns:ventavehiculos="http://www.sat.gob.mx/ventavehiculos" xmlns:terceros="http://www.sat.gob.mx/terceros" xmlns:pago10="http://www.sat.gob.mx/Pagos">
 
-  <!-- Se mantiene complementos de la versión 3.2-->
-  <!-- Se agrega el complemento nómina de la versión 1.2-->
-  <!-- Se agrega el complemento ComercioExterior11 de la versión 1.1-->
-  <!-- Se agrega el complemento Pagos10 de la versión 1.0-->
-  
-  
   <!-- Con el siguiente método se establece que la salida deberá ser en texto -->
   <xsl:output method="text" version="1.0" encoding="UTF-8" indent="no"/>
   <!--
@@ -33,12 +11,37 @@
 		En esta sección se define la inclusión de las demás plantillas de transformación para 
 		la generación de las cadenas originales de los complementos fiscales 
 	-->
+  <!--<xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/EstadoDeCuentaCombustible/ecc11.xslt"/> 
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/donat/donat11.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/divisas/divisas.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/implocal/implocal.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/leyendasFiscales/leyendasFisc.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/pfic/pfic.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/TuristaPasajeroExtranjero/TuristaPasajeroExtranjero.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/cfdiregistrofiscal/cfdiregistrofiscal.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/pagoenespecie/pagoenespecie.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/aerolineas/aerolineas.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/valesdedespensa/valesdedespensa.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/consumodecombustibles/consumodecombustibles.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/notariospublicos/notariospublicos.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/vehiculousado/vehiculousado.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/servicioparcialconstruccion/servicioparcialconstruccion.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/renovacionysustitucionvehiculos/renovacionysustitucionvehiculos.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/certificadodestruccion/certificadodedestruccion.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/arteantiguedades/obrasarteantiguedades.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/ComercioExterior11/ComercioExterior11.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/ine/ine11.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/iedu/iedu.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/ventavehiculos/ventavehiculos11.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/terceros/terceros11.xslt"/>
+  <xsl:include href="http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos10.xslt"/>-->
+  
   <xsl:include href="/xslt/cfd/ecc/ecc.xslt"/>
   <xsl:include href="/xslt/cfd/psgecfd/psgecfd.xslt"/>
   <xsl:include href="/xslt/cfd/donat/donat11.xslt"/>
   <xsl:include href="/xslt/cfd/divisas/divisas.xslt"/>
   <xsl:include href="/xslt/cfd/ecb/ecb.xslt"/>
-  <xsl:include href="/xslt/cfd/detallista/detallista.xslt"/>
   <xsl:include href="/xslt/cfd/implocal/implocal.xslt"/>
   <xsl:include href="/xslt/cfd/terceros/terceros11.xslt"/>
   <xsl:include href="/xslt/cfd/iedu/iedu.xslt"/>
@@ -46,9 +49,11 @@
   <xsl:include href="/xslt/cfd/pfic/pfic.xslt"/>
   <xsl:include href="/xslt/cfd/TuristaPasajeroExtranjero/TuristaPasajeroExtranjero.xslt"/>
   <xsl:include href="/xslt/cfd/leyendasFiscales/leyendasFisc.xslt"/>
-  <xsl:include href="/xslt/cfd/nomina/nomina11.xslt"/>
   <xsl:include href="/xslt/cfd/nomina12/nomina12.xslt"/>
-  
+  <xsl:include href="/xslt/cfd/pago10/Pagos10.xslt"/>
+  <xsl:include href="/xslt/cfd/cce/ComercioExterior11.xslt"/>
+
+	
   <!-- Aquí iniciamos el procesamiento de la cadena original con su | inicial y el terminador || -->
   <xsl:template match="/">|<xsl:apply-templates select="/cfdi:Comprobante"/>||</xsl:template>
   <!--  Aquí iniciamos el procesamiento de los datos incluidos en el comprobante -->
@@ -105,7 +110,7 @@
     <!--
 			Llamadas para procesar al los sub nodos del comprobante
 		-->
-    <xsl:apply-templates select="./cfdi:CFDIRelacionados"/>
+    <xsl:apply-templates select="./cfdi:CfdiRelacionados"/>
     <xsl:apply-templates select="./cfdi:Emisor"/>
     <xsl:apply-templates select="./cfdi:Receptor"/>
     <xsl:apply-templates select="./cfdi:Conceptos"/>
@@ -116,13 +121,13 @@
   </xsl:template>
 
   <!-- Manejador de nodos tipo CFDIRelacionados -->
-  <xsl:template match="cfdi:CFDIRelacionados">
+  <xsl:template match="cfdi:CfdiRelacionados">
     <!-- Iniciamos el tratamiento de los atributos del CFDIRelacionados -->
     <xsl:call-template name="Requerido">
       <xsl:with-param name="valor" select="./@TipoRelacion"/>
     </xsl:call-template>
     <xsl:for-each select="./cfdi:CfdiRelacionado">
-      <xsl:call-template name="Opcional">
+      <xsl:call-template name="Requerido">
         <xsl:with-param name="valor" select="./@UUID"/>
       </xsl:call-template>
     </xsl:for-each>
@@ -203,7 +208,7 @@
     </xsl:call-template>
 
     <!-- Manejo de sub nodos de información Traslado de Conceptos:Concepto:Impuestos:Traslados-->
-    <xsl:for-each select="./cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado">
+    <xsl:for-each select="./cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado">
       <xsl:call-template name="Requerido">
         <xsl:with-param name="valor" select="./@Base"/>
       </xsl:call-template>
@@ -222,7 +227,7 @@
     </xsl:for-each>
 
     <!-- Manejo de sub nodos de Retencion por cada una de los Conceptos:Concepto:Impuestos:Retenciones-->
-    <xsl:for-each select="./cfdi:Conceptos/cfdi:Concepto/cfdi:Impuestos/cfdi:Retenciones/cfdi:Retencion">
+    <xsl:for-each select="./cfdi:Impuestos/cfdi:Retenciones/cfdi:Retencion">
       <xsl:call-template name="Requerido">
         <xsl:with-param name="valor" select="./@Base"/>
       </xsl:call-template>
@@ -241,7 +246,7 @@
     </xsl:for-each>
 
     <!-- Manejo de los distintos sub nodos de información aduanera de forma indistinta a su grado de dependencia -->
-    <xsl:for-each select=".//cfdi:InformacionAduanera">
+    <xsl:for-each select="./cfdi:InformacionAduanera">
       <xsl:apply-templates select="."/>
     </xsl:for-each>
 
@@ -324,7 +329,7 @@
   <!-- Manejador de nodos tipo Domicilio fiscal -->
   <xsl:template match="cfdi:Impuestos">
     <!-- Manejo de sub nodos de Retencion por cada una de los Impuestos:Retenciones-->
-    <xsl:for-each select="./cfdi:Impuestos/cfdi:Retenciones/cfdi:Retencion">
+    <xsl:for-each select="./cfdi:Retenciones/cfdi:Retencion">
       <xsl:call-template name="Requerido">
         <xsl:with-param name="valor" select="./@Impuesto"/>
       </xsl:call-template>
@@ -337,7 +342,7 @@
       <xsl:with-param name="valor" select="./@TotalImpuestosRetenidos"/>
     </xsl:call-template>
     <!-- Manejo de sub nodos de información Traslado de Impuestos:Traslados-->
-    <xsl:for-each select="./cfdi:Impuestos/cfdi:Traslados/cfdi:Traslado">
+    <xsl:for-each select="./cfdi:Traslados/cfdi:Traslado">
       <xsl:call-template name="Requerido">
         <xsl:with-param name="valor" select="./@Impuesto"/>
       </xsl:call-template>

@@ -429,6 +429,34 @@
               <extension>true</extension>
             </configuration>
           </execution>
+          <execution>
+            <id>schema250-xjc</id>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+            <configuration>
+              <packageName>mx.bigdata.sat.addenda.soriana.schema</packageName>
+              <schemaDirectory>src/main/resources/xsd/addenda-soriana</schemaDirectory>
+              <bindingDirectory>src/main/resources</bindingDirectory>
+              <outputDirectory>${project.build.directory}/generated-sources/xjc250</outputDirectory>          
+              <staleFile>${project.build.directory}/generated-sources/xjc250/.staleFlag</staleFile>
+              <extension>true</extension>
+            </configuration>
+          </execution>
+          <execution>
+            <id>schema251-xjc</id>
+            <goals>
+              <goal>xjc</goal>
+            </goals>
+            <configuration>
+              <packageName>mx.bigdata.sat.addenda.soriana.pie.schema</packageName>
+              <schemaDirectory>src/main/resources/xsd/addenda-soriana-pie</schemaDirectory>
+              <bindingDirectory>src/main/resources</bindingDirectory>
+              <outputDirectory>${project.build.directory}/generated-sources/xjc251</outputDirectory>          
+              <staleFile>${project.build.directory}/generated-sources/xjc251/.staleFlag</staleFile>
+              <extension>true</extension>
+            </configuration>
+          </execution>
         </executions>
       </plugin>
       <plugin>

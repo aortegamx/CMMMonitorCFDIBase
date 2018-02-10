@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	elementFormDefault="qualified" xmlns:cfdi="http://www.sat.gob.mx/cfd/3">
+	<xs:element name="Addenda" type="responseDSCargaRemisionProv">
+	</xs:element>
+	<xs:complexType name="responseDSCargaRemisionProv">
+		<xs:choice maxOccurs="unbounded">
+
+			<xs:element name="requestForPayment">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element ref="requestForPaymentIdentification" />
+						<xs:element ref="specialInstruction" />
+						<xs:element ref="orderIdentification" />
+						<xs:element ref="AdditionalInformation" />
+						<xs:element ref="DeliveryNote" />
+						<xs:element ref="buyer" />
+						<xs:element ref="seller" />
+						<xs:element ref="shipTo" />
+						<xs:element ref="InvoiceCreator" />
+						<xs:element ref="currency" />
+						<xs:element ref="paymentTerms" />
+						<xs:element ref="allowanceCharge" />
+						<xs:element maxOccurs="unbounded" ref="lineItem" />
+						<xs:element ref="totalAmount" />
+						<xs:element ref="TotalAllowanceCharge" />
+						<xs:element ref="baseAmount" />
+						<xs:element maxOccurs="unbounded" ref="tax" />
+						<xs:element ref="payableAmount" />
+					</xs:sequence>
+					<xs:attribute name="DeliveryDate" use="required" type="xs:NMTOKEN" />
+					<xs:attribute name="contentVersion" use="required"
+						type="xs:NMTOKEN" />
+					<xs:attribute name="documentStatus" use="required"
+						type="xs:NCName" />
+					<xs:attribute name="documentStructureVersion" use="required"
+						type="xs:NCName" />
+					<xs:attribute name="type" use="required" type="xs:NCName" />
+				</xs:complexType>
+			</xs:element>
+
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:element name="requestForPaymentIdentification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="entityType" />
+				<xs:element ref="uniqueCreatorIdentification" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="entityType" type="xs:NCName" />
+	<xs:element name="uniqueCreatorIdentification" type="xs:NCName" />
+	<xs:element name="specialInstruction">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="text">
+					<xs:attribute name="code" use="required" type="xs:NCName" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="orderIdentification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="referenceIdentification" />
+				<xs:element ref="ReferenceDate" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="DeliveryNote">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="referenceIdentification" />
+				<xs:element ref="ReferenceDate" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="buyer">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gln" />
+				<xs:element ref="contactInformation" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="contactInformation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="personOrDepartmentName" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="personOrDepartmentName" type="text" />
+	<xs:element name="seller">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gln" />
+				<xs:element ref="alternatePartyIdentification" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="shipTo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gln" />
+				<xs:element ref="nameAndAddress" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="InvoiceCreator">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gln" />
+				<xs:element ref="alternatePartyIdentification" />
+				<xs:element ref="nameAndAddress" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="currency">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="currencyFunction" />
+				<xs:element ref="rateOfChange" />
+			</xs:sequence>
+			<xs:attribute name="currencyISOCode" use="required"
+				type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="currencyFunction" type="xs:NCName" />
+	<xs:element name="rateOfChange" type="xs:NMTOKEN" />
+	<xs:element name="paymentTerms">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="netPayment" />
+			</xs:sequence>
+			<xs:attribute name="PaymentTermsRelationTime" use="required"
+				type="xs:NCName" />
+			<xs:attribute name="paymentTermsEvent" use="required"
+				type="xs:NMTOKEN" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="netPayment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="paymentTimePeriod" />
+			</xs:sequence>
+			<xs:attribute name="netPaymentTermsType" use="required"
+				type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="paymentTimePeriod">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="timePeriodDue" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="timePeriodDue">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="value" />
+			</xs:sequence>
+			<xs:attribute name="timePeriod" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="value" type="xs:NMTOKEN" />
+	<xs:element name="allowanceCharge">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="specialServicesType" />
+				<xs:element ref="monetaryAmountOrPercentage" />
+			</xs:sequence>
+			<xs:attribute name="allowanceChargeType" use="required"
+				type="xs:NCName" />
+			<xs:attribute name="settlementType" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="specialServicesType" type="xs:NCName" />
+	<xs:element name="monetaryAmountOrPercentage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="rate" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="rate">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="percentage" />
+			</xs:sequence>
+			<xs:attribute name="base" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="percentage" type="xs:NMTOKEN" />
+	<xs:element name="lineItem">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="tradeItemIdentification" />
+				<xs:element ref="alternateTradeItemIdentification" />
+				<xs:element ref="tradeItemDescriptionInformation" />
+				<xs:element ref="invoicedQuantity" />
+				<xs:element ref="aditionalQuantity" />
+				<xs:element ref="grossPrice" />
+				<xs:element ref="netPrice" />
+				<xs:element ref="AdditionalInformation" />
+				<xs:element minOccurs="0" maxOccurs="unbounded"
+					ref="tradeItemTaxInformation" />
+				<xs:element ref="totalLineAmount" />
+			</xs:sequence>
+			<xs:attribute name="number" use="required" type="xs:NMTOKEN" />
+			<xs:attribute name="type" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tradeItemIdentification">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="gtin" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gtin" type="xs:NMTOKEN" />
+	<xs:element name="alternateTradeItemIdentification">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:NMTOKEN">
+					<xs:attribute name="type" use="required" type="xs:NCName" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="tradeItemDescriptionInformation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="longText" />
+			</xs:sequence>
+			<xs:attribute name="language" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="longText" type="xs:string" />
+	<xs:element name="invoicedQuantity">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:NMTOKEN">
+					<xs:attribute name="unitOfMeasure" use="required"
+						type="xs:NCName" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="aditionalQuantity">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:NMTOKEN">
+					<xs:attribute name="QuantityType" use="required" type="xs:NCName" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="grossPrice" type="Amount" />
+	<xs:element name="netPrice" type="Amount" />
+	<xs:element name="tradeItemTaxInformation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="taxTypeDescription" />
+				<xs:element ref="tradeItemTaxAmount" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="taxTypeDescription" type="xs:NCName" />
+	<xs:element name="tradeItemTaxAmount">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="taxPercentage" />
+				<xs:element ref="taxAmount" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="totalLineAmount">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="grossAmount" />
+				<xs:element ref="netAmount" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="grossAmount" type="Amount" />
+	<xs:element name="netAmount" type="Amount" />
+	<xs:element name="totalAmount" type="Amount" />
+	<xs:element name="TotalAllowanceCharge">
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="Amount">
+					<xs:attribute name="allowanceOrChargeType" use="required"
+						type="xs:NCName" />
+				</xs:extension>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="baseAmount" type="Amount" />
+	<xs:element name="tax">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="taxPercentage" />
+				<xs:element ref="taxAmount" />
+			</xs:sequence>
+			<xs:attribute name="type" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="payableAmount" type="Amount" />
+	<xs:complexType name="text">
+		<xs:sequence>
+			<xs:element ref="text" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="text" type="xs:string" />
+	<xs:element name="referenceIdentification">
+		<xs:complexType>
+			<xs:simpleContent>
+				<xs:extension base="xs:NMTOKEN">
+					<xs:attribute name="type" type="xs:NCName" />
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ReferenceDate" type="xs:NMTOKEN" />
+	<xs:element name="AdditionalInformation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="referenceIdentification" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gln" type="xs:string" />
+	<xs:element name="alternatePartyIdentification">
+		<xs:complexType mixed="true">
+			<xs:attribute name="type" use="required" type="xs:NCName" />
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="nameAndAddress">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="name" />
+				<xs:element ref="streetAddressOne" />
+				<xs:element ref="city" />
+				<xs:element ref="postalCode" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="name" type="xs:string" />
+	<xs:element name="streetAddressOne" type="xs:string" />
+	<xs:element name="city" type="xs:string" />
+	<xs:element name="postalCode" type="xs:NMTOKEN" />
+	<xs:complexType name="Amount">
+		<xs:sequence>
+			<xs:element ref="Amount" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Amount" type="xs:NMTOKEN" />
+	<xs:element name="taxPercentage" type="xs:string" />
+	<xs:element name="taxAmount" type="xs:string" />
+</xs:schema>
